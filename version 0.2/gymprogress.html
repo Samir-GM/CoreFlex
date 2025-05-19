@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head style> <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoreFlex - Fitness Training</title> 
+    <link rel="stylesheet" href="progress.css">
+   
+</head>
+<body style="background-color:#ee6c41;">
+
+ 
+ <div class="main-header">
+    <h1 href="#" class="logo">CoreFlex</h1>
+    <a href="membership.html">
+        <button  class="cta-button" >JOIN NOW</button>
+       </a>
+ 
+<nav>
+     <ul class="nav-links">
+         <li><a href="index.html">HOME</a></li>
+         <li><a href="trainer and class.html">CLASSES</a></li>
+         <li><a href="About.html">Aboutus</a></li>
+         <li><a href="membership.html">membership-plans</a></li>
+         <li><a href="https://www.google.com.au/maps/place/Coreflex/@-37.9107394,144.7583537,17z/data=!3m1!4b1!4m6!3m5!1s0x6ad687d78be6e053:0x7d46bb168ad75b7c!8m2!3d-37.9107394!4d144.7609286!16s%2Fg%2F11c2lbqf7v?entry=ttu&g_ep=EgoyMDI1MDQyMy4wIKXMDSoASAFQAw%3D%3D" class="cta-button">FIND A GYM</a></li>
+     </ul>
+    </nav>
+ </div>
+  <div class="container">
+    <h1>Gym Progress Tracker</h1>
+
+    <form id="progressForm">
+      <label for="date">Date:</label>
+      <input type="date" id="date" required>
+
+      <label for="weight">Weight (kg):</label>
+      <input type="number" id="weight" min="0" required>
+
+      <label for="workout">Workout Summary:</label>
+      <textarea id="workout" rows="3" placeholder="e.g. Chest and triceps, cardio" required></textarea>
+
+      <button type="submit">Add Progress</button>
+    </form>
+
+    <h2>Your Progress</h2>
+    <div id="progressList"></div>
+  </div>
+
+  <script src="progress.js"></script>
+</body>
+</html>
