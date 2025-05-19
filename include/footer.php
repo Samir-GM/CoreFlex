@@ -4,17 +4,14 @@
             <h2 class="section-title">Meet The Team</h2>
             <div class="team-section">
                 <div class="team-member">
-                    <img src="oscar.jpg" alt="Oscar">
                     <h3>Oscar</h3>
                     <p>Tech & Operations</p>
                 </div>
                 <div class="team-member">
-                    <img src="samir.jpg" alt="Samir">
                     <h3>Samir</h3>
                     <p>Head Trainer</p>
                 </div>
                 <div class="team-member">
-                    <img src="mahima.jpg" alt="Mahima">
                     <h3>Mahima</h3>
                     <p>Community Manager</p>
                 </div>
