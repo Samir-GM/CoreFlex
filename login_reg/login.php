@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8" />
     <title>Login - CoreFlex</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/CoreFlex/site.css" />
 </head>
 <body class="login-register">
     <div class="form-container">
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="password" placeholder="Password" required />
             <button type="submit">Login</button>
         </form>
-        <button onclick="history.back()" class="back-button">← Back</button>
+        <button onclick="history.back()" class="back-button">Back</button>
         <p>Don't have an account? <a href="register.php">Register</a></p>
     </div>
 </body>

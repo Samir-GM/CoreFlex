@@ -7,6 +7,7 @@
     <title>CoreFlex - Fitness Training</title>
     <link rel="stylesheet" href="/CoreFlex/site.css" />
     <link rel="icon" href="favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body style="background-color:#ee6c41;">
 <header class="main-header">

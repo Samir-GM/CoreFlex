@@ -1,11 +1,12 @@
-<!-- membership.php -->
 <?php include('include/header.php'); ?>
 
-<div class="hero-section">
-    <h2>Transform Your Fitness Journey</h2>
-    <p>Choose the perfect membership plan for your goals</p>
-</div>
+<!-- Hero Section -->
+<section class="membership-hero">
+  <h2>Unlock Your Potential with CoreFlex Membership</h2>
+  <p>Join a community built for growth. Whether you're toning up, building strength, or boosting flexibility—find the perfect plan to fuel your transformation.</p>
+</section>
 
+<!-- Membership Plans -->
 <div class="membership-plans">
     <div class="plan-card basic">
         <h3>BASIC</h3>
@@ -14,8 +15,10 @@
             <li>Access to main gym area</li>
             <li>Free fitness assessment</li>
             <li>Basic workout tracking</li>
+            <li>A community with same goal</li>
         </ul>
-        <a href="#" class="cta-button">Get Started</a>
+        <a href="membership-confirm.php?plan=basic" class="cta-button">Get Started</a>
+
     </div>
 
     <div class="plan-card premium">
@@ -27,7 +30,7 @@
             <li>Advanced progress tracking</li>
             <li>Nutrition planning</li>
         </ul>
-        <a href="#" class="cta-button">Get Started</a>
+        <a href="membership-confirm.php?plan=premium" class="cta-button">Get Started</a>
     </div>
 
     <div class="plan-card pro">
@@ -39,29 +42,37 @@
             <li>VIP class booking</li>
             <li>Premium amenities</li>
         </ul>
-        <a href="#" class="cta-button">Get Started</a>
+        <a href="membership-confirm.php?plan=pro" class="cta-button">Get Started</a>
     </div>
 </div>
 
-<section class="section" id="team">
-    <h2 class="section-title">Meet The Team</h2>
-    <div class="team-section">
-        <div class="team-member">
-            <img src="oscar.jpg" alt="Oscar">
-            <h3>Oscar</h3>
-            <p>Tech & Operations</p>
-        </div>
-        <div class="team-member">
-            <img src="samir.jpg" alt="Samir">
-            <h3>Samir</h3>
-            <p>Head Trainer</p>
-        </div>
-        <div class="team-member">
-            <img src="mahima.jpg" alt="Mahima">
-            <h3>Mahima</h3>
-            <p>Community Manager</p>
-        </div>
+<!-- Benefits Section -->
+<section class="membership-benefits">
+  <h2>Why Choose CoreFlex?</h2>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <img src="images/benefit1.jpg" alt="Modern Equipment">
+      <h3>State-of-the-Art Equipment</h3>
+      <p>Access the latest in fitness technology and tools to supercharge your workouts safely and efficiently.</p>
     </div>
+    <div class="benefit-card">
+      <img src="images/benefit2.jpg" alt="Expert Trainers">
+      <h3>Expert Trainers</h3>
+      <p>Our certified trainers are here to guide you every step of the way, whether you're a beginner or an athlete.</p>
+    </div>
+    <div class="benefit-card">
+      <img src="images/benefit3.jpg" alt="Flexible Schedules">
+      <h3>Flexible Classes</h3>
+      <p>Choose from a variety of classes and times to fit your schedule—no more excuses!</p>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-banner">
+  <h2>Ready to Transform?</h2>
+  <p>Become the strongest, healthiest version of yourself. Your journey starts today with CoreFlex.</p>
+  <a href="/CoreFlex/membership.php" class="cta-button">Join Now</a>
 </section>
 
 <?php include('include/footer.php'); ?>

@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="confirm_password" placeholder="Confirm Password" required />
             <button type="submit">Register</button>
         </form>
-        <button onclick="history.back()" class="back-button">← Back</button>
+        <button onclick="history.back()" class="back-button">Back</button>
         <p>Already have an account? <a href="login.php">Log in</a></p>
     </div>
 </body>

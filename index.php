@@ -64,6 +64,11 @@
                 <img src="images/gallery2.jpg" alt="Workout Image 2">
                 <img src="images/gallery3.jpg" alt="Workout Image 3">
                 <img src="images/gallery4.jpg" alt="Workout Image 4">
+                <img src="images/gallery5.jpg" alt="Workout Image 5">
+                <img src="images/gallery6.jpg" alt="Workout Image 6">
+                <img src="images/gallery7.jpg" alt="Workout Image 7">
+                <img src="images/gallery8.jpg" alt="Workout Image 8">
+
             </div>
         </div>
     </section>
