@@ -1,45 +1,61 @@
-<?php include('include/header.php'); ?>
 <?php
-// Redirect to login page if user is not logged in
-if (!isset($_SESSION['username'])) {
+include('include/header.php');
+
+// Start session and redirect if not logged in
+if (!isset($_SESSION['user_id'])) {
     header('Location: login_reg/login.php');
     exit();
 }
 
-require_once 'config/config.php'; // Your DB connection file
+require_once 'config/config.php';
 
-$username = $_SESSION['username'];
-
-// Get and sanitize the plan from GET parameter
+$user_id = $_SESSION['user_id'];
 $allowed_plans = ['basic', 'premium', 'pro'];
 $plan = isset($_GET['plan']) ? strtolower(trim($_GET['plan'])) : '';
 
 if (!in_array($plan, $allowed_plans)) {
-    // Invalid plan, redirect or show error
     header('Location: /CoreFlex/login_reg/login.php');
     exit();
 }
 
-// Generate a unique membership code (e.g., CFX-ABCDEFGH)
 $membership_code = "CFX-" . strtoupper(substr(md5(uniqid('', true)), 0, 8));
 
-// Prepare and execute insert statement
-$stmt = $conn->prepare("INSERT INTO user_memberships (user_id, plan, membership_code) VALUES (?, ?, ?)");
-if ($stmt === false) {
-    die('Prepare failed: ' . htmlspecialchars($conn->error));
+// Check if the user already has a membership
+$stmt = $conn->prepare("SELECT id FROM user_memberships WHERE user_id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$stmt->store_result();
+
+if ($stmt->num_rows > 0) {
+    // Membership exists, update it
+    $stmt->close();
+    $update = $conn->prepare("UPDATE user_memberships SET plan = ?, membership_code = ?, date_purchased = NOW() WHERE user_id = ?");
+    if ($update === false) {
+        die('Prepare failed: ' . htmlspecialchars($conn->error));
+    }
+    $update->bind_param("ssi", $plan, $membership_code, $user_id);
+    if (!$update->execute()) {
+        die('Execute failed: ' . htmlspecialchars($update->error));
+    }
+    $update->close();
+} else {
+    // No membership yet, insert new
+    $stmt->close();
+    $insert = $conn->prepare("INSERT INTO user_memberships (user_id, plan, membership_code) VALUES (?, ?, ?)");
+    if ($insert === false) {
+        die('Prepare failed: ' . htmlspecialchars($conn->error));
+    }
+    $insert->bind_param("iss", $user_id, $plan, $membership_code);
+    if (!$insert->execute()) {
+        die('Execute failed: ' . htmlspecialchars($insert->error));
+    }
+    $insert->close();
 }
 
-$stmt->bind_param("iss", $username, $plan, $membership_code);
-
-if (!$stmt->execute()) {
-    die('Execute failed: ' . htmlspecialchars($stmt->error));
-}
-
-$stmt->close();
 $conn->close();
-
 ?>
 
+<!-- Confirmation HTML Section -->
 <section class="confirmation-section" style="padding: 60px 20px; text-align:center; max-width: 600px; margin: 40px auto; background: rgba(0,0,0,0.7); border-radius: 12px; color: white;">
   <h2 style="font-size: 2.8rem; margin-bottom: 20px; color: #00d4ff; text-shadow: 1px 1px 5px rgba(0,0,0,0.7);">
     Thank You for Joining CoreFlex!

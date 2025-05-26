@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             if ($stmt->execute()) {
                 $_SESSION['username'] = $username;
-                header("Location: dashboard.php");  // Redirect after successful registration
+                header("Location: login.php");  // Redirect after successful registration
                 exit();
             } else {
                 $message = "Error during registration.";

@@ -1,4 +1,15 @@
 <?php include('include/header.php'); ?>
+<?php
+require 'config/config.php'; // Your DB connection
+
+// Fetch all plans ordered by id or name
+$sql = "SELECT * FROM membership_plans ORDER BY id ASC";
+$result = $conn->query($sql);
+
+if (!$result) {
+    die("Database error: " . $conn->error);
+}
+?>
 
 <!-- Hero Section -->
 <section class="membership-hero">
@@ -8,42 +19,29 @@
 
 <!-- Membership Plans -->
 <div class="membership-plans">
-    <div class="plan-card basic">
-        <h3>BASIC</h3>
-        <div class="price">$29<span>/mo</span></div>
-        <ul>
-            <li>Access to main gym area</li>
-            <li>Free fitness assessment</li>
-            <li>Basic workout tracking</li>
-            <li>A community with same goal</li>
-        </ul>
-        <a href="membership-confirm.php?plan=basic" class="cta-button">Get Started</a>
+    <?php while($plan = $result->fetch_assoc()): ?>
+        <div class="plan-card <?= htmlspecialchars($plan['name']) ?>">
+            <h3><?= strtoupper(htmlspecialchars($plan['name'])) ?></h3>
+            <div class="price">$<?= number_format($plan['price'], 2) ?><span>/mo</span></div>
+            <ul>
+                <?php
+                // Description stored as comma-separated or list, you can explode to list items
+                $items = explode(',', $plan['description']);
+                foreach ($items as $item) {
+                    echo '<li>' . htmlspecialchars(trim($item)) . '</li>';
+                }
+                ?>
+            </ul>
+            <div class="button-group">
+                <a href="membership-confirm.php?plan=<?= urlencode($plan['name']) ?>" class="cta-button">Get Started</a>
 
-    </div>
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                    <a href="edit_plan.php?plan=<?= urlencode($plan['name']) ?>" class="cta-button" style="background-color:#444;">✏️ Edit</a>
+                <?php endif; ?>
+            </div>
 
-    <div class="plan-card premium">
-        <h3>PREMIUM</h3>
-        <div class="price">$49<span>/mo</span></div>
-        <ul>
-            <li>All Basic features</li>
-            <li>Group classes included</li>
-            <li>Advanced progress tracking</li>
-            <li>Nutrition planning</li>
-        </ul>
-        <a href="membership-confirm.php?plan=premium" class="cta-button">Get Started</a>
-    </div>
-
-    <div class="plan-card pro">
-        <h3>PRO</h3>
-        <div class="price">$79<span>/mo</span></div>
-        <ul>
-            <li>All Premium features</li>
-            <li>Personal trainer sessions</li>
-            <li>VIP class booking</li>
-            <li>Premium amenities</li>
-        </ul>
-        <a href="membership-confirm.php?plan=pro" class="cta-button">Get Started</a>
-    </div>
+        </div>
+    <?php endwhile; ?>
 </div>
 
 <!-- Benefits Section -->
